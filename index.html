@@ -87,7 +87,7 @@
 </head>
 <body>
 
-   <!-- <div class="modal fade" id="authModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+   <div class="modal fade" id="authModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: var(--primary-color); color: white;">
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <div class="container" id="mainContent">
         <h2 class="text-center mb-4 text-primary">نموذج تقييم الأداء التفصيلي</h2>
         <div id="alertMessage" class="alert d-none" role="alert"></div>
@@ -517,56 +517,56 @@ const form = document.getElementById('evaluationForm');
 
         // **منطق التحقق من الهوية (Manager ID Auth Logic)**
         
-        // function handleAuthSuccess(response) {
-        //     authSubmitButton.disabled = false;
-        //     authSubmitButton.textContent = 'التحقق والدخول';
+        function handleAuthSuccess(response) {
+            authSubmitButton.disabled = false;
+            authSubmitButton.textContent = 'التحقق والدخول';
             
-        //     if (response.success) {
-        //         // 1. إخفاء المودال
-        //         authModal.modal('hide'); 
+            if (response.success) {
+                // 1. إخفاء المودال
+                authModal.modal('hide'); 
                 
-        //         // 2. إظهار النموذج الرئيسي
-        //         mainContent.style.display = 'block'; 
+                // 2. إظهار النموذج الرئيسي
+                mainContent.style.display = 'block'; 
 
-        //         // 3. تعبئة حقل رقم المدير (الحقل الجديد)
-        //         document.getElementById('managerID').value = response.managerId;
+                // 3. تعبئة حقل رقم المدير (الحقل الجديد)
+                document.getElementById('managerID').value = response.managerId;
                 
-        //         // 4. إزالة رسالة الخطأ
-        //         authAlert.classList.add('d-none');
-        //     } else {
-        //         // فشل التحقق
-        //         authAlert.textContent = response.message;
-        //         authAlert.classList.remove('d-none');
-        //     }
-        // }
+                // 4. إزالة رسالة الخطأ
+                authAlert.classList.add('d-none');
+            } else {
+                // فشل التحقق
+                authAlert.textContent = response.message;
+                authAlert.classList.remove('d-none');
+            }
+        }
 
-        // function handleAuthFailure(error) {
-        //     authSubmitButton.disabled = false;
-        //     authSubmitButton.textContent = 'التحقق والدخول';
-        //     authAlert.textContent = '❌ فشل الاتصال بالخادم. حاول مجدداً.';
-        //     authAlert.classList.remove('d-none');
-        //     console.error('Apps Script Error:', error);
-        // }
+        function handleAuthFailure(error) {
+            authSubmitButton.disabled = false;
+            authSubmitButton.textContent = 'التحقق والدخول';
+            authAlert.textContent = '❌ فشل الاتصال بالخادم. حاول مجدداً.';
+            authAlert.classList.remove('d-none');
+            console.error('Apps Script Error:', error);
+        }
 
-        // authSubmitButton.addEventListener('click', () => {
-        //     const managerId = managerIdInput.value.trim();
+        authSubmitButton.addEventListener('click', () => {
+            const managerId = managerIdInput.value.trim();
             
-        //     if (!managerId) {
-        //         authAlert.textContent = 'الرجاء إدخال الرقم الوظيفي.';
-        //         authAlert.classList.remove('d-none');
-        //         return;
-        //     }
+            if (!managerId) {
+                authAlert.textContent = 'الرجاء إدخال الرقم الوظيفي.';
+                authAlert.classList.remove('d-none');
+                return;
+            }
             
-        //     authAlert.classList.add('d-none');
-        //     authSubmitButton.disabled = true;
-        //     authSubmitButton.textContent = 'جاري التحقق...';
+            authAlert.classList.add('d-none');
+            authSubmitButton.disabled = true;
+            authSubmitButton.textContent = 'جاري التحقق...';
 
-        //     // استدعاء دالة Apps Script للتحقق
-        //     google.script.run
-        //         .withSuccessHandler(handleAuthSuccess)
-        //         .withFailureHandler(handleAuthFailure)
-        //         .checkManagerId(managerId);
-        // });
+            // استدعاء دالة Apps Script للتحقق
+            google.script.run
+                .withSuccessHandler(handleAuthSuccess)
+                .withFailureHandler(handleAuthFailure)
+                .checkManagerId(managerId);
+        });
 
         // **1. وظيفة حساب المجاميع**
         function calculateScores() {
@@ -667,3 +667,4 @@ const form = document.getElementById('evaluationForm');
 </body>
 
 </html>
+
