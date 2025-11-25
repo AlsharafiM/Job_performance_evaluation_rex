@@ -146,12 +146,12 @@
     </div>
 
     <div class="col-md-6">
-        <label for="department" class="form-label">الإدارة</label>
+        <label for="department" class="form-label">الادارة /الفرع</label>
         <input type="text" class="form-control" id="department" name="الإدارة" required>
     </div>
 
     <div class="col-md-6">
-        <label for="hireDate" class="form-label">تاريخ التعيين</label>
+        <label for="hireDate" class="form-label">تاريخ التقييم</label>
         <input type="date" class="form-control" id="hireDate" name="تاريخ التعيين" required>
     </div>
 
@@ -162,11 +162,11 @@
                 <div class="col-md-6">
                     <h4 class="section-title">معايير التقييم (1-10)</h4>
                     <table class="evaluation-table table table-bordered">
-                        <thead>
+                          <thead>
                             <tr>
-                                <th width="10%">م</th>
-                                <th>عناصر التقييم</th>
-                                <th width="20%">الحد الأعلى</th>
+                                <th width="5%" class="text-center">م</th>
+                                <th class="text-center">عناصر التقييم</th>
+                                <th width="10%" class="text-center">الحد الأعلى</th>
                                 <th width="20%">الدرجة</th>
                             </tr>
                         </thead>
@@ -292,21 +292,21 @@
                                 </td>
                             </tr>
                             <tr>
-    <td>التأخير والغياب</td>
-    <td>
+    <td  colspan="2">التأخير والغياب</td>
+    <td  colspan="2">
         <select class="form-select criteria-score" name="التأخير والغياب" data-group="1" required>
-            <option value="">اختر التقييم (من 10)</option>
-            <option value="10">10</option>
-            <option value="9">9</option>
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-            <option value="0">0</option>
+           <option value="">اختر التقييم (من 10)</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+
         </select>
     </td>
 </tr>
@@ -317,11 +317,11 @@
                 <div class="col-md-6">
                     <h4 class="section-title">معايير التقييم (11-20)</h4>
                     <table class="evaluation-table table table-bordered">
-                        <thead>
+                         <thead>
                             <tr>
-                                <th width="10%">م</th>
-                                <th>عناصر التقييم</th>
-                                <th width="20%">الحد الأعلى</th>
+                                <th width="5%" class="text-center">م</th>
+                                <th class="text-center">عناصر التقييم</th>
+                                <th width="10%" class="text-center">الحد الأعلى</th>
                                 <th width="20%">الدرجة</th>
                             </tr>
                         </thead>
@@ -447,21 +447,21 @@
                                 </td>
                             </tr>
                             <tr>
-    <td>المخالفات الوظيفية</td>
-    <td>
+    <td  colspan="2">المخالفات الوظيفية</td>
+    <td  colspan="2">
         <select class="form-select criteria-score" name="المخالفات الوظيفية" data-group="1" required>
             <option value="">اختر التقييم (من 10)</option>
-            <option value="10">10</option>
-            <option value="9">9</option>
-            <option value="8">8</option>
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-            <option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+
         </select>
     </td>
 </tr>
@@ -727,6 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
