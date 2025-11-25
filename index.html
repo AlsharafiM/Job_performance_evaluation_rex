@@ -105,7 +105,7 @@
             <div class="modal-body">
                 <div id="authAlert" class="alert alert-danger d-none" role="alert"></div>
                 <p>الرجاء إدخال رقمك الوظيفي المعتمد للمتابعة إلى نموذج التقييم:</p>
-                <input type="text" class="form-control" id="managerIdInput" placeholder="أدخل الرقم الوظيفي" required>
+                <input type="text" class="form-select" id="managerIdInput" placeholder="أدخل الرقم الوظيفي" required>
             </div>
 
             <div class="modal-footer justify-content-center">
@@ -125,21 +125,21 @@
            <table class="info-table table table-bordered mb-4">
                 <tr>
                     <td width="25%">اسم الموظف:</td>
-                    <td><input type="text" class="form-control" id="employeeName" name="اسم الموظف" required></td>
+                    <td><input type="text" class="form-select" id="employeeName" name="اسم الموظف" required></td>
                     <td width="25%">الرقم الوظيفي للمدير (المُقيِّم):</td>
-                    <td><input type="text" class="form-control" id="managerID" name="رقم المدير المُقيِّم" required readonly></td> 
+                    <td><input type="text" class="form-select" id="managerID" name="رقم المدير المُقيِّم" required readonly></td> 
                 </tr>
                 <tr>
                     <td>الوظيفة:</td>
-                    <td><input type="text" class="form-control" id="position" name="الوظيفة" required></td>
+                    <td><input type="text" class="form-select" id="position" name="الوظيفة" required></td>
                     <td width="25%">رقم الموظف المُقيَّم:</td>
-                    <td><input type="text" class="form-control" id="employeeId" name="رقم الموظف المُقيَّم" required></td> 
+                    <td><input type="text" class="form-select" id="employeeId" name="رقم الموظف المُقيَّم" required></td> 
                 </tr>
                 <tr>
                     <td>الإدارة:</td>
-                    <td><input type="text" class="form-control" id="department" name="الإدارة" required></td>
+                    <td><input type="text" class="form-select" id="department" name="الإدارة" required></td>
                     <td>تاريخ التعيين:</td>
-                    <td><input type="date" class="form-control" id="hireDate" name="تاريخ التعيين" required></td>
+                    <td><input type="date" class="form-select" id="hireDate" name="تاريخ التعيين" required></td>
                 </tr>
             </table>
             
@@ -161,7 +161,7 @@
                                 <td>مستوى معرفته بالأهداف المنشودة</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="معرفة الأهداف" data-group="1" required>
+                                    <select class="form-select criteria-score" name="معرفة الأهداف" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -173,7 +173,7 @@
                                 <td>درجة الاهتمام وتحمل المسئولية</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="اهتمام ومسؤولية" data-group="1" required>
+                                    <select class="form-select criteria-score" name="اهتمام ومسؤولية" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -185,7 +185,7 @@
                                 <td>مستوى جودة وسلامة العمل</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="جودة وسلامة العمل" data-group="1" required>
+                                    <select class="form-select criteria-score" name="جودة وسلامة العمل" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -197,7 +197,7 @@
                                 <td>مستوى تعاونه مع زملائه في العمل</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="التعاون مع الزملاء" data-group="1" required>
+                                    <select class="form-select criteria-score" name="التعاون مع الزملاء" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -209,7 +209,7 @@
                                 <td>مستوى تعاونه مع الآخرين</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="التعاون مع الآخرين" data-group="1" required>
+                                    <select class="form-select criteria-score" name="التعاون مع الآخرين" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -221,7 +221,7 @@
                                 <td>المظهر وحسن التصرف</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="المظهر والتصرف" data-group="1" required>
+                                    <select class="form-select criteria-score" name="المظهر والتصرف" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -233,7 +233,7 @@
                                 <td>مدى قدرته على التطوير وابتكار أساليب</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="القدرة على التطوير والابتكار" data-group="1" required>
+                                    <select class="form-select criteria-score" name="القدرة على التطوير والابتكار" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -245,7 +245,7 @@
                                 <td>رغبته في التعلم والتطوير الذاتي</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="الرغبة في التعلم والتطوير الذاتي" data-group="1" required>
+                                    <select class="form-select criteria-score" name="الرغبة في التعلم والتطوير الذاتي" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -257,7 +257,7 @@
                                 <td>مدى احترامه للأنظمة والتعليمات العمل</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="احترام الأنظمة والتعليمات" data-group="1" required>
+                                    <select class="form-select criteria-score" name="احترام الأنظمة والتعليمات" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -269,7 +269,7 @@
                                 <td>مستوى مدى المعرفة</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="مستوى مدى المعرفة" data-group="1" required>
+                                    <select class="form-select criteria-score" name="مستوى مدى المعرفة" data-group="1" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -279,7 +279,7 @@
                             <tr>
     <td>التأخير والغياب</td>
     <td>
-        <select class="form-control criteria-score" name="التأخير والغياب" data-group="1" required>
+        <select class="form-select criteria-score" name="التأخير والغياب" data-group="1" required>
             <option value="">اختر التقييم (من 10)</option>
             <option value="10">10</option>
             <option value="9">9</option>
@@ -316,7 +316,7 @@
                                 <td>مستوى معرفته بتفاصيل مهام وظيفته</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="معرفة تفاصيل المهام" data-group="2" required>
+                                    <select class="form-select criteria-score" name="معرفة تفاصيل المهام" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -328,7 +328,7 @@
                                 <td>مستوى سرعة في أداء مهام وظيفته</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="سرعة أداء المهام" data-group="2" required>
+                                    <select class="form-select criteria-score" name="سرعة أداء المهام" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -340,7 +340,7 @@
                                 <td>السرعة في إنجاز الأعمال المكلف بها</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="سرعة إنجاز الأعمال" data-group="2" required>
+                                    <select class="form-select criteria-score" name="سرعة إنجاز الأعمال" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -352,7 +352,7 @@
                                 <td>الدقة في أداء الأعمال المكلف بها</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="الدقة في أداء الأعمال" data-group="2" required>
+                                    <select class="form-select criteria-score" name="الدقة في أداء الأعمال" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -364,7 +364,7 @@
                                 <td>إمكانية تحمله أعباء ومسؤوليات أعلى</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="تحمل أعباء ومسؤوليات أعلى" data-group="2" required>
+                                    <select class="form-select criteria-score" name="تحمل أعباء ومسؤوليات أعلى" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -376,7 +376,7 @@
                                 <td>قدرته على توضيح وشرح مهام وطريقة تنفيذ عمله</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="توضيح وشرح المهام" data-group="2" required>
+                                    <select class="form-select criteria-score" name="توضيح وشرح المهام" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -388,7 +388,7 @@
                                 <td>مدى التزامه بأوقات الدوام الرسمي</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="الالتزام بالدوام الرسمي" data-group="2" required>
+                                    <select class="form-select criteria-score" name="الالتزام بالدوام الرسمي" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -400,7 +400,7 @@
                                 <td>مدى التزامه بإجراءات وأخلاقيات العمل</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="الالتزام بإجراءات وأخلاقيات العمل" data-group="2" required>
+                                    <select class="form-select criteria-score" name="الالتزام بإجراءات وأخلاقيات العمل" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -412,7 +412,7 @@
                                 <td>مدى اهتمامه بتطوير مهاراته</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="اهتمام بتطوير المهارات" data-group="2" required>
+                                    <select class="form-select criteria-score" name="اهتمام بتطوير المهارات" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -424,7 +424,7 @@
                                 <td>المحافظة على إجراءات الأمن</td>
                                 <td>4</td>
                                 <td>
-                                    <select class="form-control criteria-score" name="المحافظة على الأمن" data-group="2" required>
+                                    <select class="form-select criteria-score" name="المحافظة على الأمن" data-group="2" required>
                                         <option value="">-- اختر --</option>
                                         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                         <option value="3">3</option><option value="4">4</option>
@@ -434,7 +434,7 @@
                             <tr>
     <td>المخالفات الوظيفية</td>
     <td>
-        <select class="form-control criteria-score" name="المخالفات الوظيفية" data-group="1" required>
+        <select class="form-select criteria-score" name="المخالفات الوظيفية" data-group="1" required>
             <option value="">اختر التقييم (من 10)</option>
             <option value="10">10</option>
             <option value="9">9</option>
@@ -461,19 +461,19 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><strong>مجموع المجموعة الأولى:</strong></label>
-                            <input type="text" class="form-control" id="group1Total" name="مجموع المجموعة الأولى" value="0" readonly>
+                            <input type="text" class="form-select" id="group1Total" name="مجموع المجموعة الأولى" value="0" readonly>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><strong>مجموع المجموعة الثانية:</strong></label>
-                            <input type="text" class="form-control" id="group2Total" name="مجموع المجموعة الثانية" value="0" readonly>
+                            <input type="text" class="form-select" id="group2Total" name="مجموع المجموعة الثانية" value="0" readonly>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><strong>نتيجة التقييم (المجموع الكلي):</strong></label>
-                            <input type="text" class="form-control font-weight-bold bg-light" id="totalScore" name="النتيجة الكلية" value="0" readonly>
+                            <input type="text" class="form-select fw-bold bg-light" id="totalScore" name="النتيجة الكلية" value="0" readonly>
                         </div>
                     </div>
                 </div>
@@ -484,20 +484,20 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label><strong>نقاط القوة:</strong></label>
-                        <textarea class="form-control" id="strengths" name="نقاط القوة" rows="5" placeholder="أدخل نقاط القوة" required></textarea>
+                        <textarea class="form-select" id="strengths" name="نقاط القوة" rows="5" placeholder="أدخل نقاط القوة" required></textarea>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label><strong>نقاط الضعف:</strong></label>
-                        <textarea class="form-control" id="weaknesses" name="نقاط الضعف" rows="5" placeholder="أدخل نقاط الضعف" required></textarea>
+                        <textarea class="form-select" id="weaknesses" name="نقاط الضعف" rows="5" placeholder="أدخل نقاط الضعف" required></textarea>
                     </div>
                 </div>
                  <div class="col-md-4">
                     <div class="form-group">
                          <div class="form-group">
                         <label><strong>التوصيات:</strong></label>
-                        <textarea class="form-control" id="recommendations" name="التوصيات" rows="3" placeholder="أدخل التوصيات" required></textarea>
+                        <textarea class="form-select" id="recommendations" name="التوصيات" rows="3" placeholder="أدخل التوصيات" required></textarea>
                     </div>        </div>
                 </div>
                
@@ -706,6 +706,7 @@
 </body>
 
 </html>
+
 
 
 
