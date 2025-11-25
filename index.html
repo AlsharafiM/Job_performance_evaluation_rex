@@ -589,9 +589,10 @@ authSubmitButton.addEventListener('click', () => {
     }
     
     authAlert.classList.add('d-none');
-    authSubmitButton.disabled = true;
-    authSubmitButton.textContent = 'جاري التحقق...';
-
+authSubmitButton.disabled = true;
+// **التعديل هنا: استخدام رمز HTML لشريط التحميل (Spinner) من Bootstrap**
+authSubmitButton.innerHTML = ' جاري التحقق ..<span class="spinner-border spinner-border-sm text-success" role="status"  aria-hidden="true"></span>';
+  
     // استخدام Fetch لإرسال طلب POST إلى Apps Script لغرض التحقق
     const authFormData = new FormData();
     authFormData.append('action', 'checkAuth'); // إضافة مؤشر لـ doPost في Apps Script
@@ -727,6 +728,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
