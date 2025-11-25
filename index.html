@@ -548,25 +548,33 @@ const form = document.getElementById('evaluationForm');
             console.error('Apps Script Error:', error);
         }
 
-        authSubmitButton.addEventListener('click', () => {
-            const managerId = managerIdInput.value.trim();
-            
-            if (!managerId) {
-                authAlert.textContent = 'الرجاء إدخال الرقم الوظيفي.';
-                authAlert.classList.remove('d-none');
-                return;
-            }
-            
-            authAlert.classList.add('d-none');
-            authSubmitButton.disabled = true;
-            authSubmitButton.textContent = 'جاري التحقق...';
+       authSubmitButton.addEventListener('click', () => {
+    const managerId = managerIdInput.value.trim();
+    
+    if (!managerId) {
+        authAlert.textContent = 'الرجاء إدخال الرقم الوظيفي.';
+        authAlert.classList.remove('d-none');
+        return;
+    }
+    
+    authAlert.classList.add('d-none');
+    authSubmitButton.disabled = true;
+    authSubmitButton.textContent = 'جاري التحقق...';
 
-            // استدعاء دالة Apps Script للتحقق
-            google.script.run
-                .withSuccessHandler(handleAuthSuccess)
-                .withFailureHandler(handleAuthFailure)
-                .checkManagerId(managerId);
-        });
+    // **نقطة التعديل:** إرسال الرقم الوظيفي إلى Apps Script باستخدام Fetch
+    // نقوم بتضمين 'action: checkAuth' كأحد بيانات النموذج التي سيقرأها doPost
+    const formData = new FormData();
+    formData.append('action', 'checkAuth');
+    formData.append('managerId', managerId); 
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: formData // إرسال بيانات التحقق كـ FormData
+    })
+    .then(response => response.json())
+    .then(handleAuthSuccess) // استخدام دالة النجاح الحالية
+    .catch(handleAuthFailure); // استخدام دالة الفشل الحالية
+});
 
         // **1. وظيفة حساب المجاميع**
         function calculateScores() {
@@ -667,4 +675,5 @@ const form = document.getElementById('evaluationForm');
 </body>
 
 </html>
+
 
