@@ -502,178 +502,198 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
     <script>
-        // **قم بوضع رابط تطبيق الويب الخاص بك هنا**
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwd8cud0s999CUvSHtKOMF28uM9NNKZH__8qM--60vKDEBNj8_Sj11Ee5_ilGnXzFw/exec'; 
-const form = document.getElementById('evaluationForm');
-        const submitButton = document.getElementById('submitBtn');
-        const calculateButton = document.getElementById('calculateBtn');
-        const alertMessage = document.getElementById('alertMessage');
-        const scoreInputs = document.querySelectorAll('.criteria-score');
-        const mainContent = document.getElementById('mainContent');
-        const authModal = $('#authModal');
-        const managerIdInput = document.getElementById('managerIdInput');
-        const authSubmitButton = document.getElementById('authSubmit');
-        const authAlert = document.getElementById('authAlert');
+ 
+    // **قم بوضع رابط تطبيق الويب الخاص بك هنا (تأكد من أن الرابط ينتهي بـ /exec)**
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwd8cud0s999CUvSHtKOMF28uM9NNKZH__8qM--60vKDEBNj8_Sj11Ee5_ilGnXzFw/exec'; 
+    
+    // العناصر الأساسية
+    const form = document.getElementById('evaluationForm');
+    const submitButton = document.getElementById('submitBtn');
+    const calculateButton = document.getElementById('calculateBtn');
+    const alertMessage = document.getElementById('alertMessage');
+    const scoreInputs = document.querySelectorAll('.criteria-score');
+    const mainContent = document.getElementById('mainContent');
+    const authModal = $('#authModal'); // يتطلب مكتبة jQuery و Bootstrap للعمل
+    const managerIdInput = document.getElementById('managerIdInput');
+    const authSubmitButton = document.getElementById('authSubmit');
+    const authAlert = document.getElementById('authAlert');
+    const managerIDHiddenInput = document.getElementById('managerID'); // الحقل المخفي في النموذج الرئيسي
 
-        // **منطق التحقق من الهوية (Manager ID Auth Logic)**
+    // --- منطق التحقق من الهوية (Manager ID Auth Logic) ---
+    
+    function handleAuthSuccess(response) {
+        authSubmitButton.disabled = false;
+        authSubmitButton.textContent = 'التحقق والدخول';
         
-        function handleAuthSuccess(response) {
-            authSubmitButton.disabled = false;
-            authSubmitButton.textContent = 'التحقق والدخول';
+        if (response.success) {
+            // 1. إخفاء المودال
+            authModal.modal('hide'); 
             
-            if (response.success) {
-                // 1. إخفاء المودال
-                authModal.modal('hide'); 
-                
-                // 2. إظهار النموذج الرئيسي
-                mainContent.style.display = 'block'; 
+            // 2. إظهار النموذج الرئيسي
+            mainContent.style.display = 'block'; 
 
-                // 3. تعبئة حقل رقم المدير (الحقل الجديد)
-                document.getElementById('managerID').value = response.managerId;
-                
-                // 4. إزالة رسالة الخطأ
-                authAlert.classList.add('d-none');
-            } else {
-                // فشل التحقق
-                authAlert.textContent = response.message;
-                authAlert.classList.remove('d-none');
-            }
-        }
-
-        function handleAuthFailure(error) {
-            authSubmitButton.disabled = false;
-            authSubmitButton.textContent = 'التحقق والدخول';
-            authAlert.textContent = '❌ فشل الاتصال بالخادم. حاول مجدداً.';
+            // 3. تعبئة الحقل المخفي في النموذج الرئيسي برقم المدير الذي تم التحقق منه
+            managerIDHiddenInput.value = response.managerId;
+            
+            // 4. إزالة رسالة الخطأ
+            authAlert.classList.add('d-none');
+        } else {
+            // فشل التحقق
+            authAlert.textContent = response.message;
             authAlert.classList.remove('d-none');
-            console.error('Apps Script Error:', error);
         }
-
-       authSubmitButton.addEventListener('click', () => {
-    const managerId = managerIdInput.value.trim();
-    
-    if (!managerId) {
-        authAlert.textContent = 'الرجاء إدخال الرقم الوظيفي.';
-        authAlert.classList.remove('d-none');
-        return;
     }
-    
-    authAlert.classList.add('d-none');
-    authSubmitButton.disabled = true;
-    authSubmitButton.textContent = 'جاري التحقق...';
 
-    // **نقطة التعديل:** إرسال الرقم الوظيفي إلى Apps Script باستخدام Fetch
-    // نقوم بتضمين 'action: checkAuth' كأحد بيانات النموذج التي سيقرأها doPost
-    const formData = new FormData();
-    formData.append('action', 'checkAuth');
-    formData.append('managerId', managerId); 
+    function handleAuthFailure(error) {
+        authSubmitButton.disabled = false;
+        authSubmitButton.textContent = 'التحقق والدخول';
+        authAlert.textContent = '❌ فشل الاتصال بالخادم. حاول مجدداً.';
+        authAlert.classList.remove('d-none');
+        console.error('Fetch Auth Error:', error);
+    }
 
-    fetch(scriptURL, {
-        method: 'POST',
-        body: formData // إرسال بيانات التحقق كـ FormData
-    })
-    .then(response => response.json())
-    .then(handleAuthSuccess) // استخدام دالة النجاح الحالية
-    .catch(handleAuthFailure); // استخدام دالة الفشل الحالية
-});
+    authSubmitButton.addEventListener('click', () => {
+        const managerId = managerIdInput.value.trim();
+        
+        if (!managerId) {
+            authAlert.textContent = 'الرجاء إدخال الرقم الوظيفي.';
+            authAlert.classList.remove('d-none');
+            return;
+        }
+        
+        authAlert.classList.add('d-none');
+        authSubmitButton.disabled = true;
+        authSubmitButton.textContent = 'جاري التحقق...';
 
-        // **1. وظيفة حساب المجاميع**
-        function calculateScores() {
-            // ... (احتفظ بكود حساب المجاميع هنا) ...
-            let group1Total = 0;
-            let group2Total = 0;
+        // استخدام Fetch لإرسال طلب POST إلى Apps Script لغرض التحقق
+        const authFormData = new FormData();
+        authFormData.append('action', 'checkAuth'); // إضافة مؤشر لـ doPost في Apps Script
+        authFormData.append('managerId', managerId); 
 
-            scoreInputs.forEach(select => {
-                const score = parseInt(select.value);
-                const group = select.getAttribute('data-group');
+        fetch(scriptURL, {
+            method: 'POST',
+            body: authFormData 
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(handleAuthSuccess) 
+        .catch(handleAuthFailure);
+    });
 
-                if (group === '1' && !isNaN(score)) {
-                    group1Total += score;
-                } else if (group === '2' && !isNaN(score)) {
-                    group2Total += score;
-                }
-            });
+    // --- 1. وظيفة حساب المجاميع ---
+    function calculateScores() {
+        let group1Total = 0;
+        let group2Total = 0;
 
-            const totalScore = group1Total + group2Total;
+        scoreInputs.forEach(select => {
+            const score = parseInt(select.value);
+            const group = select.getAttribute('data-group');
 
-            document.getElementById('group1Total').value = group1Total;
-            document.getElementById('group2Total').value = group2Total;
-            document.getElementById('totalScore').value = totalScore;
+            if (group === '1' && !isNaN(score)) {
+                group1Total += score;
+            } else if (group === '2' && !isNaN(score)) {
+                group2Total += score;
+            }
+        });
+
+        const totalScore = group1Total + group2Total;
+
+        document.getElementById('group1Total').value = group1Total;
+        document.getElementById('group2Total').value = group2Total;
+        document.getElementById('totalScore').value = totalScore;
+    }
+
+    // ربط الحساب بتغيير أي تقييم
+    scoreInputs.forEach(select => {
+        select.addEventListener('change', calculateScores);
+    });
+
+    // ربط الحساب بضغطة زر (إذا كان موجوداً)
+    if (calculateButton) {
+        calculateButton.addEventListener('click', calculateScores);
+    }
+
+
+    // --- 2. وظيفة إرسال النموذج (البيانات النهائية) ---
+    form.addEventListener('submit', e => {
+        e.preventDefault(); 
+        
+        calculateScores(); 
+
+        if (!form.checkValidity()) {
+             // يجب أن تعمل هذه الآلية مع إعدادات required/pattern في HTML
+             form.classList.add('was-validated'); 
+             return; 
         }
 
-        // حساب النتائج عند تغيير أي تقييم
-        scoreInputs.forEach(select => {
-            select.addEventListener('change', calculateScores);
-        });
+        submitButton.disabled = true;
+        submitButton.textContent = 'جاري الإرسال... 🚀';
+        alertMessage.classList.add('d-none'); 
 
-        // حساب النتائج عند الضغط على زر "حساب النتائج"
-        calculateButton.addEventListener('click', calculateScores);
+        // إرسال البيانات (نستخدم نفس scriptURL)
+        const submissionFormData = new FormData(form);
+        submissionFormData.append('action', 'submitData'); // إضافة مؤشر لـ doPost
 
-        // **2. وظيفة إرسال النموذج**
-        form.addEventListener('submit', e => {
-            e.preventDefault(); 
-            
-            calculateScores(); 
-
-            if (!form.checkValidity()) {
-                 return; 
-            }
-
-            submitButton.disabled = true;
-            submitButton.textContent = 'جاري الإرسال... 🚀';
-            alertMessage.classList.add('d-none'); 
-
-            // إرسال البيانات (تستخدم متغير scriptURL)
-            fetch(scriptURL, {
-                method: 'POST',
-                body: new FormData(form) 
-            })
-            .then(response => response.json()) 
-            .then(data => {
-                if (data.result === 'success') {
-                    alertMessage.textContent = '✅ تم إرسال التقييم بنجاح!';
-                    alertMessage.className = 'alert alert-success';
-                    
-                    form.reset(); 
-                    document.getElementById('group1Total').value = '0';
-                    document.getElementById('group2Total').value = '0';
-                    document.getElementById('totalScore').value = '0';
-                    calculateScores();
-                    
-                    // إخفاء النموذج الرئيسي وإعادة فتح المودال للرقم الوظيفي التالي
-                    mainContent.style.display = 'none';
-                    managerIdInput.value = ''; 
-                    authModal.modal('show');
-                } else {
-                    alertMessage.textContent = `❌ فشل الإرسال: ${data.message || 'خطأ غير معروف.'}`;
-                    alertMessage.className = 'alert alert-danger';
-                    console.error('Apps Script Error:', data.error);
-                }
-                alertMessage.classList.remove('d-none');
+        fetch(scriptURL, {
+            method: 'POST',
+            body: submissionFormData 
+        })
+        .then(response => response.json()) 
+        .then(data => {
+            if (data.result === 'success') {
+                alertMessage.textContent = '✅ تم إرسال التقييم بنجاح!';
+                alertMessage.className = 'alert alert-success';
                 
-                submitButton.disabled = false;
-                submitButton.textContent = 'حفظ وإرسال النموذج 💾';
-            })
-            .catch(error => {
-                alertMessage.textContent = '❌ فشل الإرسال! تحقق من اتصال الشبكة.';
+                // إعادة تعيين النموذج
+                form.reset(); 
+                document.getElementById('group1Total').value = '0';
+                document.getElementById('group2Total').value = '0';
+                document.getElementById('totalScore').value = '0';
+                calculateScores();
+                
+                // إخفاء النموذج الرئيسي وإعادة فتح مودال التحقق لتقييم جديد
+                mainContent.style.display = 'none';
+                managerIdInput.value = ''; // مسح حقل الرقم الوظيفي للمدير
+                authModal.modal('show');
+            } else {
+                alertMessage.textContent = `❌ فشل الإرسال: ${data.message || 'خطأ غير معروف.'}`;
                 alertMessage.className = 'alert alert-danger';
-                alertMessage.classList.remove('d-none');
-                
-                console.error('Fetch Error:', error);
-                
-                submitButton.disabled = false;
-                submitButton.textContent = 'حفظ وإرسال النموذج 💾';
-            });
+                console.error('Apps Script Error:', data.error);
+            }
+            alertMessage.classList.remove('d-none');
+            
+            submitButton.disabled = false;
+            submitButton.textContent = 'حفظ وإرسال النموذج 💾';
+            form.classList.remove('was-validated');
+        })
+        .catch(error => {
+            alertMessage.textContent = '❌ فشل الإرسال! تحقق من اتصال الشبكة.';
+            alertMessage.className = 'alert alert-danger';
+            alertMessage.classList.remove('d-none');
+            
+            console.error('Fetch Error:', error);
+            
+            submitButton.disabled = false;
+            submitButton.textContent = 'حفظ وإرسال النموذج 💾';
+            form.classList.remove('was-validated');
         });
+    });
 
-        // **عند تحميل الصفحة:**
-        document.addEventListener('DOMContentLoaded', () => {
-            calculateScores(); 
-            // عرض المودال فور تحميل الصفحة
-            authModal.modal('show');
-        });
+    // --- عند تحميل الصفحة ---
+    document.addEventListener('DOMContentLoaded', () => {
+        calculateScores(); 
+        // عرض المودال فور تحميل الصفحة
+        authModal.modal('show');
+    });
+
     </script>
 </body>
 
 </html>
+
 
 
