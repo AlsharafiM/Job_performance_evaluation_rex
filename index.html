@@ -122,26 +122,40 @@
 
         <form id="evaluationForm">
             <h4 class="section-title mb-0" style="border-radius: 5px;">بيانات الموظف الأساسية</h4>
-           <table class="info-table table table-bordered mb-4">
-                <tr>
-                    <td width="25%">اسم الموظف:</td>
-                    <td><input type="text" class="form-control" id="employeeName" name="اسم الموظف" required></td>
-                    <td width="25%">الرقم الوظيفي للمدير (المُقيِّم):</td>
-                    <td><input type="text" class="form-control" id="managerID" name="رقم المدير المُقيِّم" required readonly></td> 
-                </tr>
-                <tr>
-                    <td>الوظيفة:</td>
-                    <td><input type="text" class="form-control" id="position" name="الوظيفة" required></td>
-                    <td width="25%">رقم الموظف المُقيَّم:</td>
-                    <td><input type="text" class="form-control" id="employeeId" name="رقم الموظف المُقيَّم" required></td> 
-                </tr>
-                <tr>
-                    <td>الإدارة:</td>
-                    <td><input type="text" class="form-control" id="department" name="الإدارة" required></td>
-                    <td>تاريخ التعيين:</td>
-                    <td><input type="date" class="form-control" id="hireDate" name="تاريخ التعيين" required></td>
-                </tr>
-            </table>
+          <div class="row g-3 mb-4">
+
+    <div class="col-md-6">
+        <label for="employeeName" class="form-label">اسم الموظف</label>
+        <input type="text" class="form-control" id="employeeName" name="اسم الموظف" required>
+    </div>
+
+    <div class="col-md-6">
+        <label for="managerID" class="form-label">الرقم الوظيفي للمدير (المُقيِّم)</label>
+        <input type="text" class="form-control" id="managerID" name="رقم المدير المُقيِّم" required readonly>
+    </div>
+
+    <div class="col-md-6">
+        <label for="position" class="form-label">الوظيفة</label>
+        <input type="text" class="form-control" id="position" name="الوظيفة" required>
+    </div>
+
+    <div class="col-md-6">
+        <label for="employeeId" class="form-label">رقم الموظف المُقيَّم</label>
+        <input type="text" class="form-control" id="employeeId" name="رقم الموظف المُقيَّم" required>
+    </div>
+
+    <div class="col-md-6">
+        <label for="department" class="form-label">الإدارة</label>
+        <input type="text" class="form-control" id="department" name="الإدارة" required>
+    </div>
+
+    <div class="col-md-6">
+        <label for="hireDate" class="form-label">تاريخ التعيين</label>
+        <input type="date" class="form-control" id="hireDate" name="تاريخ التعيين" required>
+    </div>
+
+</div>
+
             
             <div class="row">
                 <div class="col-md-6">
@@ -712,6 +726,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 
 </html>
+
 
 
 
